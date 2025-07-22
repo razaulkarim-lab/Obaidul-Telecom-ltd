@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Obaidul Telecom Ltd | Link & Service Manager</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <style>
+* {
+  box-sizing: border-box;
+}
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  color: #fff;
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body::-webkit-scrollbar {
+  width: 10px;
+}
+body::-webkit-scrollbar-thumb {
+  background-color: #9c27b0;
+  border-radius: 10px;
+}
+body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.container {
+  max-width: 1100px;
+  width: 95%;
+  margin: 30px auto;
+  background: rgba(255,255,255,0.08);
+  border-radius: 20px;
+  backdrop-filter: blur(15px);
+  padding: 25px;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+}
+
+#darkModeToggle {
+  background: #222;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 15px;
+}
+
+nav.sidebar ul {
+  list-style: none;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 20px 0;
+}
+nav.sidebar ul li {
+  cursor: pointer;
+  background: #7b1fa2;
+  padding: 8px 18px;
+  border-radius: 25px;
+  font-weight: 600;
+  transition: 0.3s ease;
+  color: #fff;
+}
+nav.sidebar ul li:hover,
+nav.sidebar ul li.active {
+  background: #9c27b0;
+}
+
+header input[type="search"] {
+  width: 100%;
+  padding: 12px 18px;
+  font-size: 16px;
+  border-radius: 30px;
+  border: none;
+  outline: none;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 15px rgba(156, 39, 176, 0.4);
+  color: #333;
+}
+header input::placeholder {
+  color: #666;
+}
+
+.form-add {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+.form-add input {
+  flex: 1;
+  padding: 12px 18px;
+  font-size: 16px;
+  border-radius: 30px;
+  border: none;
+  outline: none;
+  box-shadow: 0 4px 15px rgba(156, 39, 176, 0.4);
+  color: #333;
+}
+.form-add button {
+  padding: 12px 25px;
+  font-size: 16px;
+  border: none;
+  border-radius: 30px;
+  background: #9c27b0;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: 0 6px 15px rgba(156, 39, 176, 0.6);
+}
+.form-add button:hover {
+  background: #7b1fa2;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 15px;
+  padding: 20px;
+  color: #222;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.card h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+.card a, .card button {
+  margin-top: 10px;
+  padding: 10px;
+  font-size: 14px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: center;
+  font-weight: 600;
+}
+.card a {
+  background: #007bff;
+  color: white;
+  text-decoration: none;
+}
+.card button.copy-btn {
+  background: #6c757d;
+  color: white;
+}
+.card button.copy-btn:hover {
+  background: #5a6268;
+}
+
+.btn-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.btn-delete {
+  background-color: #dc3545;
+}
+.btn-delete:hover {
+  background-color: #b02a37;
+}
+.btn-toggle {
+  background-color: #007bff;
+}
+.btn-toggle.active {
+  background-color: #28a745;
+}
+.btn-toggle:hover {
+  background-color: #0056b3;
+}
+
+@media (max-width: 600px) {
+  .form-add {
+    flex-direction: column;
+  }
+  .form-add button {
+    width: 100%;
+  }
+  nav.sidebar ul {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.top-header {
+  width: 100%;
+  padding: 20px 15px 10px;
+  text-align: center;
+  background: transparent;
+  font-weight: 700;
+  font-size: 22px;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+.top-header h1 {
+  margin: 0;
+  font-size: 60px;
+  color: #fff;
+  animation: slideIn 1s ease-in-out;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 480px) {
+  .top-header h1 {
+    font-size: 18px;
+  }
+}
+
+/* Optional Animation */
+@keyframes slideIn {
+  from {
+    transform: translateX(-50%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.marquee-container {
+  width: 100%;
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  padding: 8px 15px;
+  font-size: 16px;
+  font-weight: 500;
+  border-top: 1px solid rgba(255,255,255,0.2);
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  backdrop-filter: blur(5px);
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.marquee-container marquee {
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+
+
+body.dark-mode {
+  background: #121212;
+  color: #e0e0e0;
+}
+
+body.dark-mode .container {
+  background: rgba(255, 255, 255, 0.05);
+  color: #e0e0e0;
+}
+
+body.dark-mode .card {
+  background: #1e1e1e;
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode input,
+body.dark-mode .form-add input {
+  background: #2c2c2c;
+  color: #fff;
+}
+
+body.dark-mode input::placeholder {
+  color: #bbb;
+}
+
+body.dark-mode .form-add button,
+body.dark-mode .btn-toggle,
+body.dark-mode .btn-delete {
+  opacity: 0.9;
+}
+
+body.dark-mode .btn-toggle {
+  background-color: #0069d9;
+}
+
+body.dark-mode .btn-delete {
+  background-color: #c82333;
+}
+
+body.dark-mode .top-header h1,
+body.dark-mode .marquee-container {
+  color: #fff;
+}
+
+
+.map-container {
+  width: 100%;
+  max-width: 900px; /* প্রয়োজনমত adjust করতে পারো */
+  height: 400px;
+  margin: 20px auto;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.map-container iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+  border-radius: 15px;
+}
+
+
+
+
+
+  </style>
+
+
+</head>
+<body>
+  
+  <header class="top-header">
+  <h1>📶 Obaidul Telecom Ltd</h1>
+</header>
+<div class="marquee-container">
+  <marquee behavior="scroll" direction="left" scrollamount="5">
+    📢 স্বাগতম Obaidul Telecom Ltd–তে! আমাদের সকল ফ্লেক্সিলোড ও সার্ভিস এখন আরও দ্রুত ও নিরাপদ! 📱💳.      📢 Obaidul Telecom Ltd - একমাত্র অ্যাপ দিয়ে ৫ সিমে ফ্লেক্সিলোড মাত্র ৩ সেকেন্ডে! VIP/Sub Admin/Dealer নিয়োগ চলছে! যোগাযোগ: 01610428893 | WhatsApp: 01616398025 | 📱💳.
+  </marquee>
+</div>
+
+
+
+
+  <div class="container">
+    <button id="darkModeToggle">🌙 ডার্ক মোড</button>
+    <nav class="sidebar">
+      <ul id="categoryList">
+        <li><a href="notice.html" style="color: azure;">📢 Noticeboard</a></li>
+        <li class="active" data-category="all">All Links</li>
+        <li data-category="apps">Apps</li>
+        <li data-category="social">Social Media</li>
+        <li data-category="official">Official Pages</li>
+      </ul>
+    </nav>
+
+    <header>
+      <input type="search" id="linkSearchInput" placeholder="🔍 লিঙ্ক সার্চ করুন..." autocomplete="off" />
+    </header>
+
+    <section id="linksGrid" class="grid-container"></section>
+  </div>
+
+  <div class="container">
+    <header>
+      <input type="search" id="serviceSearchInput" placeholder="🔍 সার্ভিস সার্চ করুন..." autocomplete="off" />
+    </header>
+
+    <form class="form-add" id="addServiceForm">
+      <input type="text" id="serviceNameInput" placeholder="নতুন সার্ভিস লিখুন…" required />
+      <button type="submit">➕ Add</button>
+    </form>
+
+    <div class="grid-container" id="serviceList"></div>
+  </div>
+
+
+  <!-- তোমার HTML এর container এর মধ্যে যেকোন জায়গায় বসাতে পারো -->
+
+<div class="map-container">
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3649.4792154651434!2d91.8718506150037!3d24.894966984030467!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x37505b5dfb1c3f23%3A0x18a6ac937498995d!2sSylhet!5e0!3m2!1sen!2sbd!4v1610000000000!5m2!1sen!2sbd"
+    width="600"
+    height="450"
+    style="border:0;"
+    allowfullscreen=""
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+  ></iframe>
+</div>
+
+
+  <script>
+    const links = [
+      { id: 1, title: 'Obaidul Telecom Ltd অ্যাপ', url: 'https://play.google.com/store/apps/details?id=com.fahimtelecombd.user', category: 'apps' },
+      { id: 2, title: 'অফিসিয়াল টেলিগ্রাম চ্যানেল', url: 'https://t.me/obaidultelecomltd', category: 'social' },
+      { id: 3, title: 'অফিসিয়াল হোয়াটসঅ্যাপ', url: 'https://wa.me/message/KBZXER5FBS2FN1', category: 'social' },
+      { id: 4, title: 'Obaidul Telecom ইউটিউব চ্যানেল', url: 'https://youtube.com/@obaidultelecomltd', category: 'social' },
+      { id: 5, title: 'Obaidul Telecom ফেসবুক পেইজ', url: 'https://www.facebook.com/obaidultelecomltd', category: 'social' },
+      { id: 6, title: 'Obaidul Telecom অফিসিয়াল ওয়েবসাইট', url: 'https://obaidultelecomltd.com', category: 'official' }
+    ];
+
+    const linksGrid = document.getElementById('linksGrid');
+    const linkSearchInput = document.getElementById('linkSearchInput');
+    const categoryList = document.getElementById('categoryList');
+
+    let activeCategory = 'all';
+
+    function renderLinks() {
+      const searchTerm = linkSearchInput.value.toLowerCase();
+      const filteredLinks = links.filter(link =>
+        (activeCategory === 'all' || link.category === activeCategory) &&
+        link.title.toLowerCase().includes(searchTerm)
+      );
+
+      linksGrid.innerHTML = '';
+      if (filteredLinks.length === 0) {
+        linksGrid.innerHTML = `<p style="grid-column:1/-1; text-align:center; color:#eee;">কোনো লিঙ্ক পাওয়া যায়নি।</p>`;
+        return;
+      }
+
+      filteredLinks.forEach(link => {
+        const card = document.createElement('div');
+        card.className = 'card';
+
+        card.innerHTML = `
+          <h3>${link.title}</h3>
+          <a href="${link.url}" target="_blank">লিঙ্কে যান</a>
+          <button onclick="navigator.clipboard.writeText('${link.url}').then(()=>this.textContent='কপি হয়েছে!')">কপি করুন</button>
+        `;
+        linksGrid.appendChild(card);
+      });
+    }
+
+    categoryList.querySelectorAll('li[data-category]').forEach(li => {
+      li.addEventListener('click', () => {
+        categoryList.querySelectorAll('li').forEach(item => item.classList.remove('active'));
+        li.classList.add('active');
+        activeCategory = li.getAttribute('data-category');
+        renderLinks();
+      });
+    });
+
+    linkSearchInput.addEventListener('input', renderLinks);
+    renderLinks();
+
+    // Services
+    const serviceList = document.getElementById('serviceList');
+    const addServiceForm = document.getElementById('addServiceForm');
+    const serviceNameInput = document.getElementById('serviceNameInput');
+    const serviceSearchInput = document.getElementById('serviceSearchInput');
+
+    let services = [];
+
+    function addService(name) {
+      if (!name.trim()) return;
+      if (services.some(s => s.name.toLowerCase() === name.toLowerCase())) {
+        alert("এই নামের সার্ভিস আছে!");
+        return;
+      }
+      services.push({ id: Date.now(), name: name.trim(), active: true });
+      renderServices();
+    }
+
+    function deleteService(id) {
+      services = services.filter(s => s.id !== id);
+      renderServices();
+    }
+
+    function toggleActive(id) {
+      const s = services.find(s => s.id === id);
+      if (s) {
+        s.active = !s.active;
+        renderServices();
+      }
+    }
+
+    function renderServices() {
+      const query = serviceSearchInput.value.toLowerCase();
+      const filtered = services.filter(s => s.name.toLowerCase().includes(query));
+
+      serviceList.innerHTML = '';
+      if (filtered.length === 0) {
+        serviceList.innerHTML = `<p style="color:#eee; text-align:center; width:100%;">কোনো সার্ভিস পাওয়া যায়নি।</p>`;
+        return;
+      }
+
+      filtered.forEach(service => {
+        const card = document.createElement('div');
+        card.className = 'card';
+
+        const title = document.createElement('h3');
+        title.textContent = service.name;
+
+        const btnGroup = document.createElement('div');
+        btnGroup.className = 'btn-group';
+
+        const toggleBtn = document.createElement('button');
+        toggleBtn.className = 'btn-toggle';
+        if (service.active) toggleBtn.classList.add('active');
+        toggleBtn.textContent = service.active ? 'Active' : 'Inactive';
+        toggleBtn.onclick = () => toggleActive(service.id);
+
+        const delBtn = document.createElement('button');
+        delBtn.className = 'btn-delete';
+        delBtn.textContent = 'Delete';
+        delBtn.onclick = () => {
+          if (confirm(`"${service.name}" সার্ভিসটি ডিলিট করবেন?`)) {
+            deleteService(service.id);
+          }
+        };
+
+        btnGroup.appendChild(toggleBtn);
+        btnGroup.appendChild(delBtn);
+
+        card.appendChild(title);
+        card.appendChild(btnGroup);
+        serviceList.appendChild(card);
+      });
+    }
+
+    addServiceForm.addEventListener('submit', e => {
+      e.preventDefault();
+      addService(serviceNameInput.value);
+      serviceNameInput.value = '';
+    });
+
+    serviceSearchInput.addEventListener('input', renderServices);
+
+    ['গ্রামীণফোন ফ্লেক্সিলোড','বাংলালিংক ফ্লেক্সিলোড','রবি ফ্লেক্সিলোড','এয়ারটেল ফ্লেক্সিলোড','টেলিটক ফ্লেক্সিলোড','গ্রামীণফোন রেগুলার প্যাক','বাংলালিংক রেগুলার প্যাক','রবি রেগুলার প্যাক','এয়ারটেল রেগুলার প্যাক','গ্রামীণফোন ড্রাইভ প্যাক','বাংলালিংক ড্রাইভ প্যাক','রবি ড্রাইভ প্যাক','এয়ারটেল ড্রাইভ প্যাক'].forEach(addService);
+
+    // Dark mode
+    document.getElementById('darkModeToggle').addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+    });
+
+  </script>
+</body>
+</html>
